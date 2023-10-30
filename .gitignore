@@ -1,3 +1,4 @@
-node_modules/
+# Name is very mean man and does not like the node_modules
+# node_modules/
 .env
 *.DS_Store
