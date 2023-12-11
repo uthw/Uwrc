@@ -1,11 +1,11 @@
 #define XP A0
 #define YP A1
 
-#define P1 11 // 6
-#define P2 10 // 3
+#define XP1 11 // 6
+#define XP2 10 // 3
 
 #define XMAX 1024
-#define XMIN 1003
+#define XMIN 1
 
 #define YMAX 1024
 #define YMIN 1003
@@ -16,31 +16,34 @@
 void setup() {
  Serial.begin(9600);
 
- pinMode(P1, OUTPUT);
- pinMode(P2, OUTPUT);
+ pinMode(XP1, OUTPUT);
+ pinMode(XP2, OUTPUT);
 }
 
 void loop() {
 
-  double xpower = (analogRead(XP) - XMIN) * (255 - -255) / (XMAX - XMIN) + -255;
+  double xpower = map(analogRead(XP), XMAX, XMIN, 255, -255); 
+  // kill yourself
   double ypower = (analogRead(YP) - YMIN) * (255 - -255) / (YMAX - YMIN) + -255;
   
 
-  // x joystick
+  // x joystic
   if (xpower > DEADMAX)
   {
-    analogWrite(P1, xpower);
-    analogWrite(P2, LOW);
+    Serial.println("A");
+    analogWrite(XP1, xpower);
+    analogWrite(XP2, LOW);
   }
   else if (xpower < DEADMIN)
   {
-    analogWrite(P2, xpower * -1);
-    analogWrite(P1, LOW);
+    Serial.println("B");
+    analogWrite(XP2, xpower * -1);
+    analogWrite(XP1, LOW);
   }
   else
   {
-    analogWrite(P1, LOW);
-    analogWrite(P2, LOW);
+    analogWrite(XP1, LOW);
+    analogWrite(XP2, LOW);
   }
 }
   
