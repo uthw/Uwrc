@@ -1,4 +1,5 @@
-# Controller idea
+# I dont make the controller that might be someone else's job.
+## Controller idea
 
 ```
 |      Forward 
