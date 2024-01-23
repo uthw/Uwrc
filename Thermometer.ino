@@ -38,4 +38,5 @@ void loop()
   lcd.print("Where is the");
   lcd.setCursor(0, 1);
   lcd.print("temp thing?");
+  // 10k
   }
