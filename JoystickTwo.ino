@@ -47,10 +47,10 @@ void setup() {
 }
 
 void loop() {
-  // Joystick 1
+  // Joystick 1 Power Range
   double xpower1 = map(analogRead(joy1.xPinJoy), joy1.xMax, joy1.xMin, 255, -255);
 
-  // Joystick 2
+  // Joystick 2 Power Range
   double xpower2 = map(analogRead(joy2.xPinJoy), joy2.xMax, joy2.xMin, 255, -255);
 
   // x joystick 1
