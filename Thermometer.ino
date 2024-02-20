@@ -1,13 +1,10 @@
 //www.elegoo.com
 //2016.12.9
 
-#include <LiquidCrystal.h>
 int tempPin = 0;
-//                BS  E  D4 D5  D6 D7
-LiquidCrystal lcd(7, 8, 9, 10, 11, 12);
 void setup()
 {
-  lcd.begin(16, 2);
+  Serial.begin(9600);
 }
 void loop()
 {
@@ -18,22 +15,17 @@ void loop()
   float tempC = tempK - 273.15;            // Convert Kelvin to Celcius
   float tempF = (tempC * 9.0)/ 5.0 + 32.0; // Convert Celcius to Fahrenheit
 
-//   Display Temperature in C
-  lcd.setCursor(0, 0);
-//  lcd.print("Temp         C  ");
-  // Display Temperature in F
-  lcd.print("Temp         F ");
-  lcd.setCursor(6, 0);
-  // Display Temperature in C
-//  lcd.print(tempC);
-  // Display Temperature in F
-  lcd.print(tempF
-  );
-  delay(500);
-
-//  lcd.setCursor(0, 0);
-//  lcd.print("Where is the");
-//  lcd.setCursor(0, 1);
-//  lcd.print("temp thing?");
-//  10k
+  Serial.println("=============== Thermometer ===============");
+  Serial.print("Temperature in Celcius:    ");
+  Serial.print(tempC);
+  Serial.println();
+  Serial.print("Temperature in Fahrenheit: ");
+  Serial.print(tempF);
+  Serial.println();
+  Serial.println("============= End Thermometer =============");
+  for (int i = 1; i <= 11; ++i) {
+    Serial.println();
   }
+  delay(2000);
+  
+}
