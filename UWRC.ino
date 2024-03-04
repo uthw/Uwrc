@@ -1,3 +1,14 @@
+#include <Wire.h>
+#include <Adafruit_PWMServoDriver.h>
+
+Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
+
+#define SERVOMIN  150
+#define SERVOMAX  600
+#define USMIN  600
+#define USMAX  2400
+#define SERVO_FREQ 60
+
 // Joysitck 1 NOT READY
 #define XP1MOTER1 2 // 6
 #define XP2MOTER1 3 // 3
@@ -30,8 +41,8 @@
 #define XP1MOTER3 6 // 6
 #define XP2MOTER3 7 // 3
 
-#define XPJOY3 A0 
-#define YPJOY3 A1
+#define XPJOY3 A4 
+#define YPJOY3 A5
 
 #define XMAX3 1024
 #define XMIN3 1
@@ -44,8 +55,8 @@
 #define XP1MOTER4 8 // 6
 #define XP2MOTER4 9 // 3
 
-#define XPJOY4 A2 
-#define YPJOY4 A3
+#define XPJOY4 A6 
+#define YPJOY4 A7
 
 #define XMAX4 1024
 #define XMIN4 1
@@ -62,14 +73,43 @@ int tempPin = 0;
 void setup() {
  Serial.begin(9600);
 
+ pwm.begin();
+
+ pwm.setOscillatorFrequency(27000000);
+ pwm.setPWMFreq(50);
+
+  Wire.setClock(400000);
+
  pinMode(XP1MOTER1, OUTPUT);
  pinMode(XP2MOTER1, OUTPUT);
 
  pinMode(XP1MOTER2, OUTPUT);
  pinMode(XP2MOTER2, OUTPUT);
+
+ pinMode(XP1MOTER3, OUTPUT);
+ pinMode(XP2MOTER3, OUTPUT);
+
+ pinMode(XP1MOTER4, OUTPUT);
+ pinMode(XP2MOTER4, OUTPUT);
 }
 
 void loop() {
+  int tempReading = analogRead(0);
+
+  double tempK = log(10000.0 * ((1024.0 / tempReading - 1)));
+  tempK = 1 / (0.001129148 + (0.000234125 + (0.0000000876741 * tempK * tempK )) * tempK );       //  Temp Kelvin
+  float tempC = tempK - 273.15;            // Convert Kelvin to Celcius
+  float tempF = (tempC * 9.0)/ 5.0 + 32.0; // Convert Celcius to Fahrenheit
+
+
+    Serial.println("=============== Thermometer ===============");
+  Serial.print("Temperature in Celcius:    ");
+  Serial.print(tempC);
+  Serial.println();
+  Serial.print("Temperature in Fahrenheit: ");
+  Serial.print(tempF);
+  Serial.println();
+  Serial.println("============= End Thermometer =============");
 
   // Joysitck 1
   double xpower1 = map(analogRead(XPJOY1), XMAX1, XMIN1, 255, -255); 
@@ -90,6 +130,8 @@ void loop() {
   double ypower2 = map(analogRead(YPJOY4), YMAX2, YMIN2, 255, -255); 
   // NO THANK YOU double ypower1 = map(analogRead(YPJOY1), YMAX1, YMIN1, 255, -255); 
   // End Joystick 1
+
+//  pwm.setPWM(servonum, 0, pulselen);
 
 
   // x joystick 1
