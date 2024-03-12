@@ -9,62 +9,6 @@ Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 #define USMAX  2400
 #define SERVO_FREQ 60
 
-// // Joysitck 1 NOT READY
-// #define XP1MOTER1 2 // 6
-// #define XP2MOTER1 3 // 3
-
-// #define XPJOY1 A0 
-// #define YPJOY1 A1
-
-// #define XMAX1 1024
-// #define XMIN1 1
-
-// #define YMAX1 1024
-// #define YMIN1 1003
-// // End Joysitck 1
-
-// // Joysitck 2 NOT READY
-// #define XP1MOTER2 4 // 6
-// #define XP2MOTER2 5 // 3
-
-// #define XPJOY2 A2 
-// #define YPJOY2 A3
-
-// #define XMAX2 1024
-// #define XMIN2 1
-
-// #define YMAX2 1024
-// #define YMIN2 1003
-// // End Joysitck 2
-
-// // Joysitck 3 NOT READY
-// #define XP1MOTER3 6 // 6
-// #define XP2MOTER3 7 // 3
-
-// #define XPJOY3 A4 
-// #define YPJOY3 A5
-
-// #define XMAX3 1024
-// #define XMIN3 1
-
-// #define YMAX3 1024
-// #define YMIN3 1003
-// // End Joysitck 3
-
-// // Joysitck 4 NOT READY
-// #define XP1MOTER4 8 // 6
-// #define XP2MOTER4 9 // 3
-
-// #define XPJOY4 A6 
-// #define YPJOY4 A7
-
-// #define XMAX4 1024
-// #define XMIN4 1
-
-// #define YMAX4 1024
-// #define YMIN4 1003
-// // End Joysitck 4
-
 #define DEADMAX 100
 #define DEADMIN -100
 
